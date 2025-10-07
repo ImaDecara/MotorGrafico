@@ -37,4 +37,4 @@ class Model:
         if normals is not None:
             self.vertex_layout.add_attribute("in_normal", "3f", normals)
         if texcords is not None:
-            self.vertex_layout.add_attribute("in_texcoord", "2f", texcords)
+            self.vertex_layout.add_attribute("in_uv", "2f", texcords)
