@@ -49,6 +49,7 @@ class Graphics:
         if texture_name not in self.__textures:
             raise ValueError(f"No existe la textura {texture_name}")
         
+        
         texture_obj, texture_ctx = self.__textures[texture_name]
         texture_obj.update_data(new_data)
         texture_ctx.write(texture_obj.get_bytes())

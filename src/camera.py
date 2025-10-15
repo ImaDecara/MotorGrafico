@@ -1,4 +1,4 @@
-import glm
+from pyglm import glm
 from ray import Ray 
 
 # Cámara simple en perspectiva
@@ -35,16 +35,14 @@ class Camera:
         self.aspect = aspect
         
     def raycast(self, u: float, v: float) -> Ray:
+        fov_adjustment = glm.tan(glm.radians(self.fov) / 2)
           
         ndc_x = (2. * u) - 1.
-        ndc_y = 1 - (2 * v)   
-        
-        fov_adjustment = glm.tan(glm.radians(self.fov) / 2)
-        
+        ndc_y = (2 * v) - 1  
+                
         ndc_x *= self.aspect * fov_adjustment
         ndc_y *= fov_adjustment
 
-       
         ray_dir_camera = glm.vec3(ndc_x, ndc_y, -1.0)  # Cámara mira en -Z
         ray_dir_camera = glm.normalize(ray_dir_camera)
 
@@ -52,6 +50,6 @@ class Camera:
         view = self.get_view_matrix()
         inv_view = glm.inverse(view)
         
-        #ray_dir_world = glm.vec3(inv_view * glm.vec4(ray_dir_camera, 0.0))
-        ray_dir_world = glm.vec3(inv_view * glm.vec4(ray_dir_camera.x, ray_dir_camera.y, ray_dir_camera.z, 0.0))
+        #ray_dir_world = glm.normalize(glm.vec3(inv_view * glm.vec4(ray_dir_camera, 0.0)))
+        ray_dir_world = glm.normalize(glm.vec3(inv_view * glm.vec4(ray_dir_camera.x, ray_dir_camera.y, ray_dir_camera.z, 0.0)))
         return Ray(self.position, ray_dir_world)

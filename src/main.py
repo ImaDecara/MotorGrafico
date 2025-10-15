@@ -10,7 +10,7 @@ from quad import Quad
 WIDTH, HEIGHT = 800, 600
 
 #USAMOS NORMAL PARA PRUEBAS
-SCENE_TYPE = "gpu"  # Opciones: "normal", "cpu", "gpu"
+SCENE_TYPE = "cpu"  # Opciones: "normal", "cpu", "gpu"
 
 scene_configs = {
     "normal": {
@@ -68,10 +68,10 @@ if SCENE_TYPE == "normal":
 elif SCENE_TYPE == "cpu":
     scene = RayScene(window.ctx, camera, WIDTH, HEIGHT)
     
-    scene.add_object(sprite, material_sprite)
     scene.add_object(cube1, material_plastic)
     scene.add_object(cube2, material_glass)
     scene.add_object(quad, material_ceramic)
+    scene.add_object(sprite, material_sprite)
 
 
 elif SCENE_TYPE == "gpu":
