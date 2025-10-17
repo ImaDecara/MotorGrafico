@@ -10,7 +10,7 @@ from quad import Quad
 WIDTH, HEIGHT = 800, 600
 
 #USAMOS NORMAL PARA PRUEBAS
-SCENE_TYPE = "cpu"  # Opciones: "normal", "cpu", "gpu"
+SCENE_TYPE = "gpu"  # Opciones: "normal", "cpu", "gpu"
 
 scene_configs = {
     "normal": {
